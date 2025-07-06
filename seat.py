@@ -1,6 +1,5 @@
 from client import Client
 
-
 class Seat:
     def __init__(self, seat_number: str, client: Client):
         self.seat_number = seat_number
@@ -18,3 +17,5 @@ class Seat:
     def set_client(self, value):
         self.client = value
 
+    def reserve_seat():
+        pass
