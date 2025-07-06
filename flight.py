@@ -1,6 +1,7 @@
+import random
 import uuid
+import client
 from crew_member import Crew
-import crew_member
 from seat import Seat
 
 
@@ -53,7 +54,13 @@ class Flight:
         vou usar o random pra poder printar os assentos
         usando indices de 0 até 250, assim vão ficar aleatorios
         dentro do que foi pedido'''
-        pass
+
+        sample = random.sample(self.seats, 10)
+        for seat in sample:
+            if seat.is_reserved:
+                print(f"Assento {seat.number} está ocupado por {seat.client.nome}")
+        else:
+            print(f"Assento {seat.number} está livre.")
 
     def show_crew(self):
         for member in self.crew_member:
