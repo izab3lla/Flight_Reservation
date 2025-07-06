@@ -1,6 +1,6 @@
 import random
 import uuid
-import client
+from client import Client
 from crew_member import Crew
 from seat import Seat
 
@@ -9,7 +9,7 @@ class Flight:
     def __init__(self, id_flight: str, price: float, seat: Seat, crew: Crew):
         self._id_flight = str(uuid.uuid4()) [:5]#talvez gerar com uuid mas colocar no maximo 5 digitos para n ficar extenso
         self._price = price #o preco
-        self._seat = [] * 250 #250 lugares
+        self._seats = [Seat(number=i) for i in range(250)]
         self._crew = [] #listado a partir da classe de tripulantes
     
 
@@ -41,13 +41,16 @@ class Flight:
     def set_crew(self, value):
         self._crew = value
 
-    def add_crew_members(self, crew_member):
+    def add_crew_members(self, crew_member: Crew):
         #vou apenas adicionar um lista com append
-        self.crew.append(crew_member)
+        self._crew.append(crew_member)
 
-    def reserve_seat(self):
-        #aqui vou precisar fazer verificação se o lugar ta vago e está no limeite de 250, talvez fazer try 
-        pass
+    def reserve_seat(self, number_seat: int, client: Client):
+        #aqui vou precisar fazer verificação se o lugar ta vago e está no limite de 250, talvez fazer try 
+        if not (0 <= number_seat < 250): 
+            raise ValueError ("Numero de assento invalido!")
+        self.seats[number_seat].reserve(client)
+        
 
     def show_seats(self):
         '''a logica entre os dois vai ser a mesma
@@ -59,9 +62,9 @@ class Flight:
         for seat in sample:
             if seat.is_reserved:
                 print(f"Assento {seat.number} está ocupado por {seat.client.nome}")
-        else:
-            print(f"Assento {seat.number} está livre.")
+            else:
+                print(f"Assento {seat.number} está livre.")
 
     def show_crew(self):
-        for member in self.crew_member:
+        for member in self._crew:
             print(f"{member.name}, {member.role}")
