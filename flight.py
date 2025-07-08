@@ -6,20 +6,19 @@ from seat import Seat
 
 
 class Flight:
-    def __init__(self, id_flight: str, price: float, seat: Seat, crew: Crew):
-        self._id_flight = str(uuid.uuid4()) [:5]#talvez gerar com uuid mas colocar no maximo 5 digitos para n ficar extenso
-        self._price = price #o preco
-        self._seats = [Seat(number=i) for i in range(250)]
-        self._crew = [] #listado a partir da classe de tripulantes
-    
+    def __init__(self, id_flight: str, price: float):
+        self.__id_flight = str(uuid.uuid4()) [:5]  # talvez gerar com uuid mas colocar no maximo 5 digitos para n ficar extenso
+        self._price = price  # o preco
+        self._seats = [Seat(seat_number = i + 1) for i in range(250)]
+        self._crew = []  # listado a partir da classe de tripulantes
 
     @property
-    def _id_flight(self):
-        return self._id_flight
+    def id_flight(self):
+        return self.__id_flight
 
-    @_id_flight.setter
-    def _id_flight(self, value):
-        self._id_flight = value
+    @id_flight.setter
+    def id_flight(self, value):
+        self.__id_flight = value
 
     @property
     def price(self):
@@ -41,15 +40,15 @@ class Flight:
     def set_crew(self, value):
         self._crew = value
 
-    def add_crew_members(self, crew_member: Crew):
-        #vou apenas adicionar um lista com append
+    def add_crew_member(self, crew_member: Crew):
+        # vou apenas adicionar um lista com append
         self._crew.append(crew_member)
 
-    def reserve_seat(self, number_seat: int, client: Client):
-        #aqui vou precisar fazer verificação se o lugar ta vago e está no limite de 250, talvez fazer try 
+    '''def reserve_seat(self, number_seat: int, client: Client):
+        # aqui vou precisar fazer verificação se o lugar ta vago e está no limite de 250, talvez fazer try 
         if not (0 <= number_seat < 250): 
             raise ValueError ("Numero de assento invalido!")
-        self.seats[number_seat].reserve(client)
+        self.seats[number_seat].reserve(client)'''
         
 
     def show_seats(self):
@@ -58,12 +57,11 @@ class Flight:
         usando indices de 0 até 250, assim vão ficar aleatorios
         dentro do que foi pedido'''
 
-        sample = random.sample(self.seats, 10)
+        sample = random.sample(self._seats, 10)
         for seat in sample:
-            if seat.is_reserved:
-                print(f"Assento {seat.number} está ocupado por {seat.client.nome}")
-            else:
-                print(f"Assento {seat.number} está livre.")
+            # Assume que o seat sempre terá client e estará reservado
+            print(f"Assento {seat.seat_number} está ocupado por {seat.client.name}")
+
 
     def show_crew(self):
         for member in self._crew:

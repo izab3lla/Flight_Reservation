@@ -1,15 +1,11 @@
-#dividido em files 
-# client -> voo -> lugar
-# tripulantes -> voo
+# Divided into files
+# client -> flight -> seat
+# crew -> flight
+from person import Person
 
-class Client:
-    def __init__(self, name: str):
-        self._name = name
+class Client(Person):
+    def __init__(self, name: str, cpf: str):
+        super().__init__(name, cpf)  # Here name and cpf are already set
 
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        self._name = value
+    def show_info(self):
+        print(f"Client: {self.name}, CPF: {self.cpf}")

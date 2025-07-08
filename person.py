@@ -1,14 +1,14 @@
-#classe abstrata, sera usada tanto em client quando em crew havendo herança entre ambos
+# Abstract class, will be used both in Client and Crew with inheritance between them
 from abc import ABC, abstractmethod
 
 class Person(ABC):
     def __init__(self, name: str, cpf: str):
         self._name = name
-        self.__cpf = cpf
+        self._cpf = cpf
 
     @property
     def name(self):
-        return self._name
+        return self._name  # access the actual attribute
 
     @name.setter
     def name(self, value):
@@ -16,11 +16,11 @@ class Person(ABC):
 
     @property
     def cpf(self):
-        return self.__cpf
+        return self._cpf  # access the actual attribute
 
     @cpf.setter
     def cpf(self, value):
-        self.__cpf = value
+        self._cpf = value
 
     @abstractmethod
     def show_info(self):

@@ -1,23 +1,17 @@
-#classe de tripulantes que tem associação
+# Crew class with association
+from person import Person
 
-class Crew:
-    def __init__(self, name: str, role: str):
-        self._name = name
-        self._role = role #como nenhum dado presente é sensivel estou adicionando apenas como protegido
-
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        self._name = value
-
+class Crew(Person):
+    def __init__(self, name: str, role: str, cpf: str = ""):
+        super().__init__(name, cpf)
+        self._role = role  
     @property
     def role(self):
-        return self._role
-
+        return self._role  
+    
     @role.setter
     def role(self, value):
-        self._role = value
- 
+        self._role = value 
+    
+    def show_info(self):
+        print(f"Crew member: {self.name} | Role: {self.role}")
