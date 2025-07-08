@@ -13,5 +13,5 @@ class Crew(Person):
     def role(self, value):
         self._role = value 
     
-    def show_info(self):
+    def show_info(self): #coloquei os show info em cada classe que precisava printar algo apenas para ir direto no menu
         print(f"Crew member: {self.name} | Role: {self.role}")

@@ -1,4 +1,5 @@
-# Abstract class, will be used both in Client and Crew with inheritance between them
+#essa sera a classe abstrata, resolvi criar ela para que houvesse herança 
+#entre client e crew_member, pois compartilhavam os mesmo atributos
 from abc import ABC, abstractmethod
 
 class Person(ABC):
@@ -8,7 +9,7 @@ class Person(ABC):
 
     @property
     def name(self):
-        return self._name  # access the actual attribute
+        return self._name 
 
     @name.setter
     def name(self, value):
@@ -16,7 +17,7 @@ class Person(ABC):
 
     @property
     def cpf(self):
-        return self._cpf  # access the actual attribute
+        return self._cpf 
 
     @cpf.setter
     def cpf(self, value):

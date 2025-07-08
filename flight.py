@@ -9,7 +9,7 @@ class Flight:
     def __init__(self, id_flight: str, price: float):
         self.__id_flight = str(uuid.uuid4()) [:5]  # talvez gerar com uuid mas colocar no maximo 5 digitos para n ficar extenso
         self._price = price  # o preco
-        self._seats = [Seat(seat_number = i + 1) for i in range(250)]
+        self._seats = [Seat(seat_number = i + 1) for i in range(250)] #aqui faz toda uma iteração na geração dos 250 assentos
         self._crew = []  # listado a partir da classe de tripulantes
 
     @property
@@ -44,13 +44,6 @@ class Flight:
         # vou apenas adicionar um lista com append
         self._crew.append(crew_member)
 
-    '''def reserve_seat(self, number_seat: int, client: Client):
-        # aqui vou precisar fazer verificação se o lugar ta vago e está no limite de 250, talvez fazer try 
-        if not (0 <= number_seat < 250): 
-            raise ValueError ("Numero de assento invalido!")
-        self.seats[number_seat].reserve(client)'''
-        
-
     def show_seats(self):
         '''a logica entre os dois vai ser a mesma
         vou usar o random pra poder printar os assentos
@@ -64,5 +57,6 @@ class Flight:
 
 
     def show_crew(self):
+        #aqui tem um laço que roda entre cada membro dos tripulantes para printar os existentes
         for member in self._crew:
             print(f"{member.name}, {member.role}")
