@@ -5,7 +5,7 @@
 ### 🔨 Technologies Used:
 - Faker
 
-###💡 Installation:
+### 💡 Installation:
 
 ```bash
 pip install faker
