@@ -11,11 +11,9 @@
 pip install faker
 
 Clone this repository:
-
-```bash 
+ 
 git clone https://github.com/izab3lla/Flight_Reservation.git
 
 Access the project folder:
 
-```bash
 cd flight_reservation
